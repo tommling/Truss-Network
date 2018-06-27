@@ -36,7 +36,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     bulletBorderAlpha: 1,
     bulletBorderThickness: 2,
     bulletColor: "#000000",
-    balloonText: "Ethereum block:[[number]]",
+    balloonText: "Ethereum block:[[hash]]",
     showBalloon: true,
     animationPlayed: true,
   },{
@@ -46,7 +46,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     type: "line",
     valueAxis: "a3",
     lineColor: "#ff5755",
-    balloonText: "WeakCoin Block:[[number]]",
+    balloonText: "WeakCoin Block:[[hash]]",
     lineThickness: 1,
     legendValueText: "[[difficulty]]",
     bullet: "square",
@@ -82,15 +82,17 @@ var wnum = 0;
 var totalDifficulty = 0;
 const etD = 200;
 const weakD = 100;
+console.log("Truss Visualizer");
 
 function insertNewData () {
     flag = !flag;
     // normally you would load new datapoints here
-
+    var hash = "0x"+generateUnid();
     // remove datapoint from the beginning
     var data = {
         "number": wnum++,
-        "distance": 100
+        "distance": 100,
+        "hash": hash
     }
     if (flag) {
         if (wnum % 4 == 0) {
@@ -105,7 +107,7 @@ function insertNewData () {
             data["latitude"] = 200;
         }
     } else totalDifficulty += weakD;
-    console.log(totalDifficulty);
+    console.log("Total Difficulty: " + totalDifficulty);
     // load new data (with json promise here)
     chart.dataProvider.push(data);
     chart.validateData();
@@ -113,7 +115,7 @@ function insertNewData () {
 
 (function loop() {
     var rand = Math.round ( Math.random() * (10000 - 4000) ) + 4000;
-    console.log(rand);
+    // console.log(rand);
     setTimeout(function() {
             insertNewData();
             loop();  
