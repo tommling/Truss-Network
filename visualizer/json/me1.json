@@ -1,0 +1,8 @@
+{
+  "number": 1,
+  "prev_hash": "0x37ef0b9f6f",
+  "difficulty": 20,
+  "nonce": 100,
+  "merkel_root": "0xfc94985832",
+  "truss_array": []
+}
